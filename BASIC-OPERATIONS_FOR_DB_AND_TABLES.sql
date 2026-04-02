@@ -1,0 +1,66 @@
+#all basic functio
+create database test;   -- cretaes database
+show databases;              -- shows the availabel data baes
+use test;					-- using the database, helps access the db
+--     Now we will have to create tables which has rows and columns 
+CREATE TABLE STABLE(                            -- CREATE UNDER DDL 
+STUDENT_ID INT,
+NAME VARCHAR(50),
+AGE int);
+
+-- NOW WE HAVE GIVEN A STRUCTURE TO THE TABLE , NOW WE NEED TO CREATE RECORDS FOR THE TABLE(ROWS COLUMNS)
+INSERT INTO STABLE(STUDENT_ID,NAME,AGE) VALUES                      -- INERT IS A DML LANGUAGE 
+(1,'ANVESH',25),
+(2,'RAMESH',33),
+(3,'SHEELA',27),
+(4,'SURESH',22);
+
+SELECT * FROM STABLE;   -- TOO SEE CONTENT OF TABLES     --SELECT IS A DQL 
+ SELECT NAME FROM STABLE;  --- JUST TO SEE NAMES 
+ SELECT NAME,AGE FROM STABLE;   -- TO SEE MORE THAN 2 COLUMNS IN TABLE 
+ 
+ -- TO ADD ANY COLUMN FOR TABLE, WE USE ALTER 
+ ALTER TABLE STABLE 
+ ADD EMAIL VARCHAR(100);
+ 
+-- update EMAILS AGAIN TO TABLE 
+SET SQL_SAFE_UPDATES = 0;
+update stable
+set email= 'ANVESH@GMAIL.COM'
+where STUDENT_ID=1;
+
+-- IF YOU WANT TO UPDATE ALL THE COLUMNS AT ONCE 
+
+UPDATE STABLE 
+SET EMAIL=CASE
+WHEN STUDENT_ID=2 THEN 'RAMESH@GMAIL.COM'
+WHEN STUDENT_ID=3 THEN 'SHEELA@HOTMAIL.COM'
+WHEN STUDENT_ID=4 THEN 'SURESH@OUTLOOK.COM' 
+END;
+
+
+SELECT * FROM STABLE;
+
+-- --------------------------------------------------------------
+-- RENAME A COLUMN 
+ALTER TABLE STABLE 
+RENAME COLUMN EMAIL TO EMAIL_ID;
+
+SELECT * FROM STABLE;
+
+-- REMOVE ALL NULLS IN THE TABLE -------------------------------------
+DELETE FROM STABLE
+WHERE STUDENT_ID IS NULL
+  AND NAME IS NULL
+  AND AGE IS NULL
+  AND EMAIL_ID IS NULL;
+  
+  SELECT * FROM STABLE ;
+
+ 
+ 
+
+
+
+
+
